@@ -1,1 +1,30 @@
+import numpy as np
 
+outfile = r'.\test.npz'
+x = np.linspace(0, np.pi, 5)
+y = np.sin(x)
+z = np.cos(x)
+np.savez(outfile, x, y, z_d=z)
+data = np.load(outfile)
+np.set_printoptions(suppress=True)
+print(data.files)  
+# ['z_d', 'arr_0', 'arr_1']
+
+print(data['arr_0'])
+# [0.         0.78539816 1.57079633 2.35619449 3.14159265]
+
+print(data['arr_1'])
+# [0.         0.70710678 1.         0.70710678 0.        ]
+
+print(data['z_d'])
+# [ 1.          0.70710678  0.         -0.70710678 -1.        ]
+
+import numpy as np
+
+outfile = r'.\test.txt'
+x = np.arange(0, 10).reshape(2, -1)
+np.savetxt(outfile, x)
+y = np.loadtxt(outfile)
+print(y)
+# [[0. 1. 2. 3. 4.]
+#  [5. 6. 7. 8. 9.]]
